@@ -1,7 +1,7 @@
 ﻿using System;
-using Calculator.Utilities;
+using Calc.Utilities;
 
-namespace Calculator
+namespace Calc
 {
     class Program
     {
@@ -13,7 +13,7 @@ namespace Calculator
             do
             {
                 Console.Clear();
-                Console.WriteLine("*** Program {0} ***", nameof(Calculator));
+                Console.WriteLine("*** Program {0} ***", nameof(Calc));
                 Console.WriteLine("Simonas Marcisauskas, 2021-06-14\n\n");
 
                 Console.WriteLine("Choose a Basic Arithmetic Operation to Perform:\n");
