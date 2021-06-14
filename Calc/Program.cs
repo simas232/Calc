@@ -48,45 +48,47 @@ namespace Calc
                 if (Console.ReadKey().Key == ConsoleKey.Enter)
                 {
                     inheritCalculation = true;
-                } else
+                }
+                else
                 {
                     inheritCalculation = false;
                     inheritedResult = 0;
                 }
             } while (true);
+        }
 
-            static double Add(double firstValue, double secondValue)
+        // math functions
+        static double Add(double firstValue, double secondValue)
+        {
+            double result = firstValue + secondValue;
+            Output.PrintTextInColor($"{firstValue} + {secondValue} = {result}!", ConsoleColor.Green, true);
+            return result;
+        }
+        static double Subtract(double firstValue, double secondValue)
+        {
+            double result = firstValue - secondValue;
+            Output.PrintTextInColor($"{firstValue} - {secondValue} = {result}!", ConsoleColor.Green, true);
+            return result;
+        }
+        static double Multiply(double firstValue, double secondValue)
+        {
+            double result = firstValue * secondValue;
+            Output.PrintTextInColor($"{firstValue} * {secondValue} = {result}!", ConsoleColor.Green, true);
+            return result;
+        }
+        static double Divide(double firstValue, double secondValue)
+        {
+            if (secondValue != 0)
             {
-                double result = firstValue + secondValue;
-                Output.PrintTextInColor($"{firstValue} + {secondValue} = {result}!", ConsoleColor.Green, true);
+                double result = firstValue / secondValue;
+                Output.PrintTextInColor($"{firstValue} / {secondValue} = {result}!", ConsoleColor.Green, true);
                 return result;
             }
-            static double Subtract(double firstValue, double secondValue)
+            else
             {
-                double result = firstValue - secondValue;
-                Output.PrintTextInColor($"{firstValue} - {secondValue} = {result}!", ConsoleColor.Green, true);
-                return result;
+                Output.PrintTextInColor("Division by Zero Detected! The Result Is Therefore Set to 0.", ConsoleColor.Red, true);
+                return 0;
             }
-            static double Multiply(double firstValue, double secondValue)
-            {
-                double result = firstValue * secondValue;
-                Output.PrintTextInColor($"{firstValue} * {secondValue} = {result}!", ConsoleColor.Green, true);
-                return result;
-            }
-            static double Divide(double firstValue, double secondValue)
-            {
-                if (secondValue != 0)
-                {
-                    double result = firstValue / secondValue;
-                    Output.PrintTextInColor($"{firstValue} / {secondValue} = {result}!", ConsoleColor.Green, true);
-                    return result;
-                }
-                else
-                {
-                    Output.PrintTextInColor("Division by Zero Detected! The Result Is Therefore Set to 0.", ConsoleColor.Red, true);
-                    return 0;
-                }
-            }        
         }
     }
 }
