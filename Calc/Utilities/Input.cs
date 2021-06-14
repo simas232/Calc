@@ -40,12 +40,5 @@ namespace Calc.Utilities
             Console.WriteLine("");
             return inputValue;
         }
-        public static void WaitForSpacebar()
-        {
-            string printedMessage = "Press <Spacebar> to Return to Main Menu... ";
-            Console.WriteLine("");
-            Output.PrintTextInColor(printedMessage, ConsoleColor.Green, true);
-            while (Console.ReadKey().Key != ConsoleKey.Spacebar) { }
-        }
     }
 }
