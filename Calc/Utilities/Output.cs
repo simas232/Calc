@@ -4,11 +4,6 @@ namespace Calc.Utilities
 {
     public class Output
     {
-        public static void PrintFunctionHeader(string functionName)
-        {
-            Console.Clear();
-            Console.WriteLine("** Function {0} **\n\n", functionName);
-        }
         public static void PrintTextInColor(string printedMessage, ConsoleColor requiredColor, bool addNewline)
         {
             ConsoleColor originalColor = Console.ForegroundColor;
