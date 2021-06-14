@@ -32,16 +32,16 @@ namespace Calc
                         Output.PrintTextInColor("Program Terminated!", ConsoleColor.Green, true);
                         return;
                     case 1:
-                        inheritedResult = Add(GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        inheritedResult = Add(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
                         break;
                     case 2:
-                        inheritedResult = Subtract(GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        inheritedResult = Subtract(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
                         break;
                     case 3:
-                        inheritedResult = Multiply(GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        inheritedResult = Multiply(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
                         break;
                     case 4:
-                        inheritedResult = Divide(GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        inheritedResult = Divide(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
                         break;
                 }
                 Output.PrintTextInColor($"\nPress <Enter> If You Want to Use {inheritedResult} as the First Value for Further Calculations.", ConsoleColor.Green, true);
@@ -86,12 +86,7 @@ namespace Calc
                     Output.PrintTextInColor("Division by Zero Detected! The Result Is Therefore Set to 0.", ConsoleColor.Red, true);
                     return 0;
                 }
-            }
-            static double GetFirstValue(bool inheritCalculation, double inheritedResult)
-            {
-                double firstValue = inheritCalculation ? inheritedResult : Input.AskForDoubleInput("Enter a First Number: ");
-                return firstValue;
-            }
+            }        
         }
     }
 }

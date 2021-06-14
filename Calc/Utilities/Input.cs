@@ -40,5 +40,10 @@ namespace Calc.Utilities
             Console.WriteLine("");
             return inputValue;
         }
+        public static double GetFirstValue(bool inheritCalculation, double inheritedResult)
+        {
+            double firstValue = inheritCalculation ? inheritedResult : Input.AskForDoubleInput("Enter a First Number: ");
+            return firstValue;
+        }
     }
 }
