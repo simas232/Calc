@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Calculator.Utilities
+namespace Calc.Utilities
 {
     public class Input
     {
@@ -40,12 +40,10 @@ namespace Calculator.Utilities
             Console.WriteLine("");
             return inputValue;
         }
-        public static void WaitForSpacebar()
+        public static double GetFirstValue(bool inheritCalculation, double inheritedResult)
         {
-            string printedMessage = "Press <Spacebar> to Return to Main Menu... ";
-            Console.WriteLine("");
-            Output.PrintTextInColor(printedMessage, ConsoleColor.Green, true);
-            while (Console.ReadKey().Key != ConsoleKey.Spacebar) { }
+            double firstValue = inheritCalculation ? inheritedResult : Input.AskForDoubleInput("Enter a First Number: ");
+            return firstValue;
         }
     }
 }
