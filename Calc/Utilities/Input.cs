@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Calculator.Utilities
+namespace Calc.Utilities
 {
     public class Input
     {
