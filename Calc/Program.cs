@@ -8,15 +8,16 @@ namespace Calc
         static void Main(string[] args)
         {
             int menuChoice;
-            bool inheritCalculation = false;
-            double inheritedResult = 0;
             do
             {
                 Console.Clear();
                 Console.WriteLine("*** Program {0} ***", nameof(Calc));
-                Console.WriteLine("Simonas Marcisauskas, 2021-06-14\n\n");
+                Console.WriteLine("Simonas Marcisauskas, 2021-06-28\n\n");
 
-                Console.WriteLine("Choose a Basic Arithmetic Operation to Perform:\n");
+                Console.WriteLine("Enter A Set of Numbers, Separated by Commas: \n");
+                string userInput = Console.ReadLine();
+
+                Console.WriteLine("\nChoose a Basic Arithmetic Operation to Perform:\n");
 
                 Console.WriteLine("1 - Add");
                 Console.WriteLine("2 - Subtract");
@@ -32,63 +33,86 @@ namespace Calc
                         Output.PrintTextInColor("Program Terminated!", ConsoleColor.Green, true);
                         return;
                     case 1:
-                        inheritedResult = Add(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        Output.PrintTextInColor($"Addition Result: { Add(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 2:
-                        inheritedResult = Subtract(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        Output.PrintTextInColor($"Subtraction Result: { Subtract(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 3:
-                        inheritedResult = Multiply(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        Output.PrintTextInColor($"Multiplication Result: { Multiply(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 4:
-                        inheritedResult = Divide(Input.GetFirstValue(inheritCalculation, inheritedResult), Input.AskForDoubleInput("Enter a Second Number: "));
+                        Output.PrintTextInColor($"Division Result: { Divide(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                 }
-                Output.PrintTextInColor($"\nPress <Enter> If You Want to Use {inheritedResult} as the First Value for Further Calculations.", ConsoleColor.Green, true);
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
-                {
-                    inheritCalculation = true;
-                }
-                else
-                {
-                    inheritCalculation = false;
-                    inheritedResult = 0;
-                }
+
+                Input.WaitForSpacebar();
             } while (true);
         }
 
         // math functions
-        static double Add(double firstValue, double secondValue)
+        static double Add(double[] values)
         {
-            double result = firstValue + secondValue;
-            Output.PrintTextInColor($"{firstValue} + {secondValue} = {result}!", ConsoleColor.Green, true);
-            return result;
-        }
-        static double Subtract(double firstValue, double secondValue)
-        {
-            double result = firstValue - secondValue;
-            Output.PrintTextInColor($"{firstValue} - {secondValue} = {result}!", ConsoleColor.Green, true);
-            return result;
-        }
-        static double Multiply(double firstValue, double secondValue)
-        {
-            double result = firstValue * secondValue;
-            Output.PrintTextInColor($"{firstValue} * {secondValue} = {result}!", ConsoleColor.Green, true);
-            return result;
-        }
-        static double Divide(double firstValue, double secondValue)
-        {
-            if (secondValue != 0)
+            double result = double.NaN;
+            if (values.Length > 1)
             {
-                double result = firstValue / secondValue;
-                Output.PrintTextInColor($"{firstValue} / {secondValue} = {result}!", ConsoleColor.Green, true);
-                return result;
+                result = values[0];
+                for (int index = 1; index < values.Length; index++)
+                {
+                    result += values[index];
+                }
             }
-            else
+
+            return result;
+        }
+        static double Subtract(double[] values)
+        {
+            double result = double.NaN;
+            if (values.Length > 1)
             {
-                Output.PrintTextInColor("Division by Zero Detected! The Result Is Therefore Set to 0.", ConsoleColor.Red, true);
-                return 0;
+                result = values[0];
+                for (int index = 1; index < values.Length; index++)
+                {
+                    result -= values[index];
+                }
             }
+
+            return result;
+        }
+        static double Multiply(double[] values)
+        {
+            double result = double.NaN;
+            if (values.Length > 1)
+            {
+                result = values[0];
+                for (int index = 1; index < values.Length; index++)
+                {
+                    result *= values[index];
+                }
+            }
+
+            return result;
+        }
+        static double Divide(double[] values)
+        {
+            double result = double.NaN;
+            if (values.Length > 1)
+            {
+                result = values[0];
+                for (int index = 1; index < values.Length; index++)
+                {
+                    if (values[index] != 0)
+                    {
+                        result /= values[index];
+                    }
+                    else
+                    {
+                        Output.PrintTextInColor("Division by Zero Detected!", ConsoleColor.Red, true);
+                        return double.NaN;
+                    }
+                }
+            }
+            return result;
         }
     }
 }
