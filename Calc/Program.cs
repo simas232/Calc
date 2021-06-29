@@ -14,7 +14,7 @@ namespace Calc
                 Console.WriteLine("*** Program {0} ***", nameof(Calc));
                 Console.WriteLine("Simonas Marcisauskas, 2021-06-28\n\n");
 
-                Console.WriteLine("Enter A Set of Numbers, Separated by Commas: \n");
+                Console.WriteLine("Enter A Set of Numbers, Separated by Whitespace Characters (e.g. \"5,5 9,4 7\": \n");
                 string userInput = Console.ReadLine();
 
                 Console.WriteLine("\nChoose a Basic Arithmetic Operation to Perform:\n");
@@ -30,89 +30,24 @@ namespace Calc
                 switch (menuChoice)
                 {
                     case 0:
-                        Output.PrintTextInColor("Program Terminated!", ConsoleColor.Green, true);
+                        Output.PrintTextInColor("Program Terminated! (Why Did You Enter These Numbers Anyway?)", ConsoleColor.Green, true);
                         return;
                     case 1:
-                        Output.PrintTextInColor($"Addition Result: { Add(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
+                        Output.PrintTextInColor($"Addition Result: { Calculator.Add(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 2:
-                        Output.PrintTextInColor($"Subtraction Result: { Subtract(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
+                        Output.PrintTextInColor($"Subtraction Result: { Calculator.Subtract(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 3:
-                        Output.PrintTextInColor($"Multiplication Result: { Multiply(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
+                        Output.PrintTextInColor($"Multiplication Result: { Calculator.Multiply(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                     case 4:
-                        Output.PrintTextInColor($"Division Result: { Divide(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
+                        Output.PrintTextInColor($"Division Result: { Calculator.Divide(Input.ParseDoubleInput(userInput)) }", ConsoleColor.Green, true);
                         break;
                 }
 
                 Input.WaitForSpacebar();
             } while (true);
-        }
-
-        // math functions
-        static double Add(double[] values)
-        {
-            double result = double.NaN;
-            if (values.Length > 1)
-            {
-                result = values[0];
-                for (int index = 1; index < values.Length; index++)
-                {
-                    result += values[index];
-                }
-            }
-
-            return result;
-        }
-        static double Subtract(double[] values)
-        {
-            double result = double.NaN;
-            if (values.Length > 1)
-            {
-                result = values[0];
-                for (int index = 1; index < values.Length; index++)
-                {
-                    result -= values[index];
-                }
-            }
-
-            return result;
-        }
-        static double Multiply(double[] values)
-        {
-            double result = double.NaN;
-            if (values.Length > 1)
-            {
-                result = values[0];
-                for (int index = 1; index < values.Length; index++)
-                {
-                    result *= values[index];
-                }
-            }
-
-            return result;
-        }
-        static double Divide(double[] values)
-        {
-            double result = double.NaN;
-            if (values.Length > 1)
-            {
-                result = values[0];
-                for (int index = 1; index < values.Length; index++)
-                {
-                    if (values[index] != 0)
-                    {
-                        result /= values[index];
-                    }
-                    else
-                    {
-                        Output.PrintTextInColor("Division by Zero Detected!", ConsoleColor.Red, true);
-                        return double.NaN;
-                    }
-                }
-            }
-            return result;
-        }
+        }   
     }
 }

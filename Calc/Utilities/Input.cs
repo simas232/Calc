@@ -25,7 +25,7 @@ namespace Calc.Utilities
         }
         public static double[] ParseDoubleInput(string userInput)
         {
-            return userInput.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(double.Parse).ToArray();
+            return userInput.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(double.Parse).ToArray();
         }
         public static void WaitForSpacebar()
         {
