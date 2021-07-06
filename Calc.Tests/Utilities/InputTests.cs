@@ -11,7 +11,6 @@ namespace Calc.Tests
         {
             // Arrange
             string testInput = "3,35";
-
             double[] result;
             double[] expected = { 3.35 };
 
@@ -24,44 +23,42 @@ namespace Calc.Tests
         [Fact]
         public void StringInputThreeValuesParsingWorks()
         {
-            //Arrange
+            // Arrange
             string testInput = "3,35 -8,95 82,2";
-
             double[] result;
             double[] expected = { 3.35, -8.95, 82.2 };
 
-            //Act
+            // Act
             result = Input.ParseDoubleInput(testInput);
 
-            //Assert
+            // Assert
             Assert.Equal(result, expected);
         }
         [Fact]
         public void StringInputNineValuesParsingWorks()
         {
-            //Arrange
+            // Arrange
             string testInput = "3,35 -8,95 82,2 -2,3 5 99,2 74,3 500,14 -111,92";
-
             double[] result;
             double[] expected = { 3.35, - 8.95, 82.2, -2.3, 5, 99.2, 74.3, 500.14, -111.92 };
 
-            //Act
+            // Act
             result = Input.ParseDoubleInput(testInput);
 
-            //Assert
+            // Assert
             Assert.Equal(result, expected);
         }
         [Fact]
         public void StringInputOnIncorrectInputFails()
         {
-            //Arrange
+            // Arrange
             string testInput = "3.35";
 
-            //Act
+            // Act
             FormatException resultMessage = Assert.Throws<FormatException>(
                 () => Input.ParseDoubleInput(testInput));
 
-            //Assert
+            // Assert
             Assert.Equal("Input string was not in a correct format.", resultMessage.Message);
         }
     }
