@@ -7,67 +7,58 @@ namespace Calc.Tests
     public class InputTests
     {
         [Fact]
-        public void Parse_SingleValueTest()
+        public void StringInputSingleValueParsingWorks()
         {
-            //Arrange
+            // Arrange
             string testInput = "3,35";
-            //string testInput = "3.35 -8.95 82.2 -2.3 5 99.2 74.3 500.14 -111.92"
-            //string testInput = "3.35 -8.95 82.2 -2.3 5 99.2 74.3 500.14 -111.92"
-
             double[] result;
             double[] expected = { 3.35 };
 
-            //Act
+            // Act
             result = Input.ParseDoubleInput(testInput);
 
-            //Assert
+            // Assert
             Assert.Equal(result, expected);
         }
-
         [Fact]
-        public void Parse_ThreeValuesTest()
+        public void StringInputThreeValuesParsingWorks()
         {
-            //Arrange
+            // Arrange
             string testInput = "3,35 -8,95 82,2";
-            //string testInput = "3.35 -8.95 82.2 -2.3 5 99.2 74.3 500.14 -111.92";
-
             double[] result;
             double[] expected = { 3.35, -8.95, 82.2 };
 
-            //Act
+            // Act
             result = Input.ParseDoubleInput(testInput);
 
-            //Assert
+            // Assert
             Assert.Equal(result, expected);
         }
-
         [Fact]
-        public void Parse_NineValuesTest()
+        public void StringInputNineValuesParsingWorks()
         {
-            //Arrange
+            // Arrange
             string testInput = "3,35 -8,95 82,2 -2,3 5 99,2 74,3 500,14 -111,92";
-
             double[] result;
             double[] expected = { 3.35, - 8.95, 82.2, -2.3, 5, 99.2, 74.3, 500.14, -111.92 };
 
-            //Act
+            // Act
             result = Input.ParseDoubleInput(testInput);
 
-            //Assert
+            // Assert
             Assert.Equal(result, expected);
         }
-
         [Fact]
-        public void Parse_ShouldFailOnIncorrectFormat()
+        public void StringInputOnIncorrectInputFails()
         {
-            //Arrange
+            // Arrange
             string testInput = "3.35";
 
-            //Act
+            // Act
             FormatException resultMessage = Assert.Throws<FormatException>(
                 () => Input.ParseDoubleInput(testInput));
 
-            //Assert
+            // Assert
             Assert.Equal("Input string was not in a correct format.", resultMessage.Message);
         }
     }
