@@ -5,6 +5,10 @@ namespace Calc
 {
     public class Calculator
     {
+        public static double Add(double firstNumber, double secondNumber)
+        {
+            return firstNumber + secondNumber;
+        }
         public static double Add(double[] values)
         {
             double result = double.NaN;
@@ -18,6 +22,10 @@ namespace Calc
             }
 
             return result;
+        }
+        public static double Subtract(double firstNumber, double secondNumber)
+        {
+            return firstNumber - secondNumber;
         }
         public static double Subtract(double[] values)
         {
@@ -33,6 +41,10 @@ namespace Calc
 
             return result;
         }
+        public static double Multiply(double firstNumber, double secondNumber)
+        {
+            return firstNumber * secondNumber;
+        }
         public static double Multiply(double[] values)
         {
             double result = double.NaN;
@@ -46,6 +58,18 @@ namespace Calc
             }
 
             return result;
+        }
+        public static double Divide(double firstNumber, double secondNumber)
+        {
+            if (double.IsInfinity(firstNumber / secondNumber))
+            {
+                Output.PrintTextInColor("Division by Zero Detected!", ConsoleColor.Red, true);
+                return double.NaN;
+            }
+            else
+            {
+                return firstNumber / secondNumber;
+            }
         }
         public static double Divide(double[] values)
         {
